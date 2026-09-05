@@ -42,6 +42,7 @@ void RotateMatrix_Op(vector<vector<int>>& matrix)
     // reversing the matrix
     for(int i = 0; i < matrix.size(); i++)
     {
+        // two pointer approach so tc n/2
         reverse(matrix[i].begin(), matrix[i].end());
     }
 }
