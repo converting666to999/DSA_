@@ -18,10 +18,8 @@ double long minMaxDist(vector<int> &nums , int k)
                 maxvalue = sectionlen; 
                 maxInd = i;
             }
-            howMany[maxInd]++;
-            
         }
-        
+        howMany[maxInd]++;
     }
 
     long double maxAns = -1; 
