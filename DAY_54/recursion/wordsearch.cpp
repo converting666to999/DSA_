@@ -30,7 +30,7 @@ bool dfs(int ind ,int i , int j , vector<vector<char>> &board, string word)
         return true; 
 
     // backtracking
-    board[i][j] == temp; 
+    board[i][j] = temp; 
     return false;
 }
 
