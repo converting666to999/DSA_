@@ -38,7 +38,8 @@ public:
    vector<vector<string>> solveNQueens(int n)
    {
         vector<vector<string>> ans;
-        vector<string> board(n); 
+        vector<string> board(n);
+        // making 2d grind of string 
         string s(n , '.'); 
 
         for(int i = 0; i < n; i++)
