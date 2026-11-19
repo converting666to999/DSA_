@@ -163,6 +163,7 @@ Node* InsertAtlast(Node* &head , int val)
     return head;
 }
 
+// with prev pointer
 Node* InsertAtK(Node* &head , int k , int val)
 {
     if(head == nullptr)
@@ -198,13 +199,43 @@ Node* InsertAtK(Node* &head , int k , int val)
 
 }
 
+// without prev pointer
+Node* InsertAtK_(Node* &head , int k , int val)
+{
+    if(head == nullptr)
+        return head = new Node(val); 
+
+    if(k == 1)
+        return InsertAtHead(head, val);
+
+    int cnt = 0;
+    Node* temp = head;
+
+    while(temp)
+    {
+        cnt++; 
+
+        if(cnt == k - 1)
+        {
+            Node* x = new Node(val , temp -> next); 
+            temp -> next = x; 
+            break;
+        }
+
+        temp = temp -> next;
+    }
+
+
+    return head;
+}
+
 int main()
 {
     vector<int> arr = {1 , 2 , 4, 6, 9};
 
     Node* head = convertingArrToLL(arr); 
     
-    head = InsertAtK(head, 4 , 100);
+    head = InsertAtK_(head, 6 , 100);
     print(head);
 
     cout << endl;
