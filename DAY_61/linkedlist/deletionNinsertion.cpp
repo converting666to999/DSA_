@@ -229,13 +229,48 @@ Node* InsertAtK_(Node* &head , int k , int val)
     return head;
 }
 
+// did with previous pointer
+Node* InsertB4xEl(Node* &head , int x , int val)
+{
+    if(head == nullptr)
+        return head = new Node(val); 
+
+    if(head -> data == x)
+        return InsertAtHead(head, val);
+
+    // int cnt = 0;
+    Node* temp = head;
+    bool fnd = false;
+
+    while(temp -> next != nullptr)
+    {
+        // cnt++; 
+
+        if(temp -> next -> data == x)
+        {
+            Node* x = new Node(val , temp -> next);
+            temp -> next = x;
+            fnd = true;
+            break;
+        }
+
+        temp = temp -> next;
+    }
+
+    if(fnd == false)
+        printf("enter the value thats in the linked list nigger \n");
+
+    return head;
+
+}
+
 int main()
 {
     vector<int> arr = {1 , 2 , 4, 6, 9};
 
     Node* head = convertingArrToLL(arr); 
     
-    head = InsertAtK_(head, 6 , 100);
+    head = InsertB4xEl(head, 12, 100);
     print(head);
 
     cout << endl;
