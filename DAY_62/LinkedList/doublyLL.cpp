@@ -3,13 +3,14 @@
 
 using namespace std;
 
-typedef struct Node{
+class Node{
 
 public:
     int data; 
     Node* next;
     Node* prev;
 
+    // constructors 
     Node(int val , Node* frwd , Node* bckwrd)
     {
         data = val; 
@@ -24,16 +25,16 @@ public:
         prev = nullptr;
     }
 
-} nd;
+};
 
-nd* convertingArrToDLL(vector<int> &arr)
+Node* convertingArrToDLL(vector<int> &arr)
 {
-    nd* head = new nd(arr[0]); 
-    nd* prev = head; 
+    Node* head = new Node(arr[0]); 
+    Node* prev = head; 
 
     for(int i = 1; i < arr.size(); i++)
     {
-        nd* temp = new nd(arr[i] , nullptr , prev); 
+        Node* temp = new Node(arr[i] , nullptr , prev); 
         prev -> next = temp;
         prev = temp;
     }
@@ -42,9 +43,9 @@ nd* convertingArrToDLL(vector<int> &arr)
 }
 
 // deleting head of doubly LL
-nd* dltHead(nd* &head)
+Node* dltHead(Node* &head)
 {
-    nd* temp = head; 
+    Node* temp = head; 
     head = head -> next; 
     head -> prev = nullptr;
     temp -> next = nullptr;
@@ -56,25 +57,29 @@ nd* dltHead(nd* &head)
 // deleting tail of doubly LL
 Node* dlttail(Node* &head)
 {
+
+      // edge case 
+    if(head -> next == nullptr)
+        return nullptr;
+    
     Node* temp = head; 
 
-    // traversing to end of the doubly LL
+    // traversing to eNode of the doubly LL
     while(temp -> next != nullptr)
         temp = temp -> next;
 
-    Node* nxt = temp; 
-    temp = temp -> prev; 
-    temp -> next = nullptr; 
-    nxt -> prev = nullptr;
-    free(nxt); 
+    Node* newTail = temp -> prev; 
+    newTail -> next = nullptr; 
+    temp -> prev = nullptr; 
+    delete(temp); 
 
     return head;
 
 }
 
-void print(nd* &head)
+void print(Node* &head)
 {
-    nd* temp = head; 
+    Node* temp = head; 
 
     while(temp)
     {
@@ -90,7 +95,7 @@ int main(){
     vector<int> arr = {10 , 2 , 3 , 4 , 5 , 8}; 
 
     //fn call
-    nd* head = convertingArrToDLL(arr); 
+    Node* head = convertingArrToDLL(arr); 
     // dltHead(head);
     dlttail(head);
 
